@@ -214,7 +214,7 @@ function updateShoppingCart() {
 
   // Hiển thị nút thanh toán
   const checkoutButton = document.createElement('a');
-  checkoutButton.href = '/order.html';
+  checkoutButton.href = '/cosmeticweb/order.html';
   checkoutButton.classList.add('btn');
   checkoutButton.innerText = 'Thanh toán';
   shoppingCartContainer.appendChild(checkoutButton);
