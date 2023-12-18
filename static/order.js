@@ -110,12 +110,12 @@ function removeItemFromCart(trashIcon) {
 }
 
 function applyDiscount() {
-    // Xử lý áp dụng mã giảm giá (có thể thêm logic tại đây)
+    // Xử lý áp dụng mã giảm giá
     // ...
 }
 
 function addToCartRecommended() {
-    // Xử lý thêm sản phẩm gợi ý vào giỏ hàng (có thể thêm logic tại đây)
+    // Xử lý thêm sản phẩm gợi ý vào giỏ hàng
     // ...
 }
 
@@ -159,8 +159,6 @@ function updateShoppingCart() {
 }
 
 function processPayment() {
-    // Simulate a payment process (you may want to implement a real payment gateway here)
-    // ...
     // Hiển thị thông báo hoàn tất thanh toán
     const successMessage = document.getElementById('payment-success-message');
     if (successMessage) {
