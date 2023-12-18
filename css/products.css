@@ -32,7 +32,7 @@ a {
 
 .listProduct {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 20px;
     margin-top: 20px;
 }
@@ -227,7 +227,7 @@ a {
 
 @media only screen and (max-width: 1600px) {
     .listProduct {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(6, 1fr);
     }
 
     .detail {
