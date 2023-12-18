@@ -181,11 +181,13 @@ document.getElementById("buyer-form").addEventListener("submit", function(event)
     // Chuyển hướng hoặc thực hiện các hành động khác sau khi lưu thành công
     
     // Ví dụ: Chuyển hướng đến trang xác nhận đơn hàng
-    // window.location.href = "products.html";
+    setTimeout(() => {
+        window.location.href = "/cosmetic/products.html";
+    }, 4000)
 });;
 
 
 function goBack() {
-    // Chuyển hướng về trang danh sách sản phẩm (index.html)
-    window.location.href = "/products.html";
+    // Chuyển hướng về trang danh sách sản phẩm (products.html)
+    window.location.href = "/index.html";
 }

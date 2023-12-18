@@ -147,10 +147,10 @@
     right: -300px; /* Bắt đầu ẩn pop-up bên phải */
     transform: translate(0, -50%);
     background-color: #00b894;
-    padding: 10px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: right 0.3s ease-in-out;
+    padding: 16px;
 }
 
 .popup-show {
