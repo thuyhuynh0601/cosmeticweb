@@ -109,17 +109,53 @@ function removeItemFromCart(trashIcon) {
     }
 }
 
-function applyDiscount() {
-    // Xử lý áp dụng mã giảm giá
-    // ...
+function applyDiscount(discountCode) {
+    const validDiscountCodes = ['CODE1', 'CODE2', 'CODE3']; // Danh sách mã giảm giá hợp lệ
+
+    // Lấy giỏ hàng từ Local Storage
+    let shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+
+    // Kiểm tra xem mã giảm giá có hợp lệ không
+    if (validDiscountCodes.includes(discountCode)) {
+        const totalBeforeDiscount = shoppingCart.reduce((acc, item) => acc + (parseFloat(item.price) * item.quantity), 0);
+
+        // Áp dụng giảm giá cho từng sản phẩm trong giỏ hàng
+        shoppingCart = shoppingCart.map(item => {
+            const originalPrice = parseFloat(item.price);
+            if (!isNaN(originalPrice)) {
+                const discountedPrice = originalPrice * 0.9; // Giảm 10%
+                const discountAmount = originalPrice - discountedPrice;
+
+                return {
+                    ...item,
+                    price: discountedPrice,
+                    discount: discountAmount // Thêm thông tin về số tiền được giảm vào mỗi sản phẩm
+                };
+            } else {
+                console.log('Invalid price for item: ', item);
+                return item;
+            }
+        });
+
+        const totalAfterDiscount = shoppingCart.reduce((acc, item) => acc + (parseFloat(item.price) * item.quantity), 0);
+
+        // Lưu giỏ hàng mới vào Local Storage
+        localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
+
+        // Cập nhật lại hiển thị giỏ hàng và thông tin giảm giá trên giao diện
+        updateShoppingCart(totalBeforeDiscount, totalAfterDiscount);
+    } else {
+        console.log('Mã giảm giá không hợp lệ');
+    }
 }
+
 
 function addToCartRecommended() {
     // Xử lý thêm sản phẩm gợi ý vào giỏ hàng
     // ...
 }
 
-function updateShoppingCart() {
+function updateShoppingCart(totalBeforeDiscount, totalAfterDiscount) {
     // Lấy giỏ hàng từ Local Storage
     const shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
 
@@ -130,29 +166,36 @@ function updateShoppingCart() {
     shoppingCart.forEach(item => {
         const cartItem = document.createElement('div');
         cartItem.classList.add('box');
-        const price = item.price - item.price * item.discount;
         cartItem.innerHTML = `
-        <i class="fas fa-trash"></i>
-        <img src="${item.image}" alt="${item.name}">
-        <div class="content">
-            <h3>${item.name}</h3>
-            <span class="price">${item.price}VNĐ -</span>
-            <span class="quantity">Số lượng: ${item.quantity}</span>
-        </div>
+            <i class="fas fa-trash"></i>
+            <img src="${item.image}" alt="${item.name}">
+            <div class="content">
+                <h3>${item.name}</h3>
+                <span class="price">${item.price} VNĐ -</span>
+                <span class="quantity">Số lượng: ${item.quantity}</span>
+            </div>
         `;
         shoppingCartContainer.appendChild(cartItem);
     });
 
-    // Tính tổng cộng và hiển thị
-    const total = shoppingCart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-    const totalElement = document.createElement('div');
-    totalElement.classList.add('total');
-    totalElement.innerText = `Tổng cộng: ${total} VNĐ`;
-    shoppingCartContainer.appendChild(totalElement);
+    // Tính toán và hiển thị thông tin giảm giá và tổng tiền sau khi giảm giá
+    let before = totalBeforeDiscount - totalAfterDiscount;
+    if(isNaN(before)) {
+        before = 0;
+    }
+    const discountContainer = document.querySelector('.discount');
+    discountContainer.innerHTML = `Số tiền được giảm: ${before} VNĐ`;
+
+    if(totalAfterDiscount === undefined) {
+        totalAfterDiscount = 0;
+    }
+    const totalElement = document.querySelector('.total');
+    totalElement.innerHTML = `Tổng cộng sau khi giảm giá: ${totalAfterDiscount} VNĐ`;
 
     // Hiển thị nút thanh toán
     const checkoutButton = document.createElement('a');
-    checkoutButton.href = '/cosmeticweb/order.html';
+    let baseUrl = window.location.hostname === '127.0.0.1' ? '' : '/cosmeticweb'; 
+    checkoutButton.href = `${baseUrl}/order.html`;
     checkoutButton.classList.add('btn');
     checkoutButton.innerText = 'Thanh toán';
     shoppingCartContainer.appendChild(checkoutButton);
@@ -271,5 +314,6 @@ function saveTransactionInfo(productName, productId, quantity, totalPrice) {
     localStorage.setItem('transactions', JSON.stringify(transactions));
     // location.reload();
 }
+
 
 

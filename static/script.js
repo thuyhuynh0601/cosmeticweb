@@ -111,7 +111,8 @@ function updateShoppingCart() {
 
     // Hiển thị nút thanh toán
     const checkoutButton = document.createElement('a');
-    checkoutButton.href = '/cosmeticweb/order.html';
+    let baseUrl = window.location.hostname === '127.0.0.1' ? '' : '/cosmeticweb'; 
+    checkoutButton.href = `${baseUrl}/order.html`;
     checkoutButton.classList.add('btn');
     checkoutButton.innerText = 'Thanh toán';
     shoppingCartContainer.appendChild(checkoutButton);
@@ -150,8 +151,9 @@ function createProductElement(product) {
     productElement.classList.add('product');
 
     productElement.innerHTML = `
-        <img src="${product.image}" alt="${product.name}">
+        <div class='new'>New</div>
         <div class="discount-badge" >${product.discount}%</div>
+        <img src="${product.image}" alt="${product.name}">
         <h2>${product.name}</h2>
         <div class="price" >${product.price} VNĐ</div>
         <span class="discounted-price">${discountedPrice}VNĐ</span>

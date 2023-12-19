@@ -182,7 +182,8 @@ document.getElementById("buyer-form").addEventListener("submit", function(event)
     
     // Ví dụ: Chuyển hướng đến trang xác nhận đơn hàng
     setTimeout(() => {
-        window.location.href = "/cosmeticweb/products.html";
+        let baseUrl = window.location.hostname === '127.0.0.1' ? '' : '/cosmeticweb'; 
+        window.location.href = `${baseUrl}/products.html`;
     }, 4000)
 });;
 

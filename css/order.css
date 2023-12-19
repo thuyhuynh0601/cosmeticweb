@@ -80,7 +80,23 @@ label {
     color: #333;
 }
 
+.discount {
+    font-size: 12px;
+    padding-top: 8px;
+}
+
+.total {
+    font-size: 16px;
+    padding-top: 8px;
+}
+
 #discount {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+#discountCodeInput {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;

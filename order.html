@@ -83,9 +83,17 @@
                 <!-- Nội dung sản phẩm đã chọn sẽ được thêm vào đây bằng JavaScript -->
             </div>
             <div class="discount-code">
-                <label for="discount">Mã giảm giá:</label>
-                <input type="text" id="discount" name="discount">
-                <button onclick="applyDiscount()">Áp dụng</button>
+                <!-- <label for="discount">Mã giảm giá:</label>
+                <input type="text" id="discount" name="discount"> -->
+                <input type="text" id="discountCodeInput" placeholder="Nhập mã giảm giá">
+                <button onclick="applyDiscount(document.getElementById('discountCodeInput').value)">Áp dụng</button>
+
+            </div>
+
+            <div class="discount"></div>
+
+            <div class="total">
+
             </div>
 
             <div id="checkout-container">

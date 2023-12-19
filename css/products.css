@@ -166,6 +166,17 @@ a {
     width: 7rem;
     font-size: 14px;
     margin: 17px 17px;
+    float: right;
+}
+
+.new {
+    float: left;
+    margin: 12px 12px;
+    padding: 4px;
+    font-size: 18px;
+    border-radius: 0px 36px 36px 0px;   
+    background-color: #f5a3b7;
+    color: white;
 }
 
 .detail .discount-badge {
