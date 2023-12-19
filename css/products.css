@@ -158,25 +158,32 @@ a {
     /* Màu chữ xanh */
 }
 
-.discount-badge {
-    background-color: #f5a3b7;
-    color: white;
-    font-weight: bold;
-    border-radius: 0px 36px 36px 0px;
-    width: 7rem;
-    font-size: 14px;
-    margin: 17px 17px;
-    float: right;
+.product-container {
+    position: relative;
 }
 
 .new {
-    float: left;
-    margin: 12px 12px;
-    padding: 4px;
-    font-size: 18px;
-    border-radius: 0px 36px 36px 0px;   
-    background-color: #f5a3b7;
-    color: white;
+    z-index: 99;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #ff0000; /* Màu nền của chữ "New" */
+    color: #ffffff; /* Màu chữ "New" */
+    padding: 5px;
+}
+
+.product-image {
+    position: relative;
+    display: inline-block;
+}
+
+.discount-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #00ff00; /* Màu nền của phần trăm giảm giá */
+    color: #ffffff; /* Màu chữ phần trăm giảm giá */
+    padding: 5px;
 }
 
 .detail .discount-badge {

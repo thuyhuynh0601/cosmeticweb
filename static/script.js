@@ -151,9 +151,14 @@ function createProductElement(product) {
     productElement.classList.add('product');
 
     productElement.innerHTML = `
-        <div class='new'>New</div>
-        <div class="discount-badge" >${product.discount}%</div>
-        <img src="${product.image}" alt="${product.name}">
+        <div class='product-container'>
+            <div class='new'>New</div>
+            <div class='product-image'>
+                <img src="${product.image}" alt="${product.name}">
+                <div class="discount-badge" >${product.discount}%</div>
+        
+            </div>
+        </div>
         <h2>${product.name}</h2>
         <div class="price" >${product.price} VNĐ</div>
         <span class="discounted-price">${discountedPrice}VNĐ</span>
